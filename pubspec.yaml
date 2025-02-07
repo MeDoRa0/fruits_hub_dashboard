@@ -13,6 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   image_picker: ^1.1.2
+  skeletonizer: ^1.4.3
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -31,5 +32,15 @@ flutter:
           weight: 700
         - asset: assets/fonts/Cairo-SemiBold.ttf
           weight: 600
+
+  assets:
+    - assets/icons/
+
+flutter_assets:
+  assets_path:
+    - assets/icons/
+  output_path: lib/core/utils/
+  filename: assets.dart
+  field_prefix: null         
 flutter_intl:
   enabled: true
