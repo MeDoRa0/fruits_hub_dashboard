@@ -22,7 +22,34 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
           child: Column(
             children: [
               CustomTextFormField(
-                  hintText: 'إسم المنتج', keyboardType: TextInputType.text),
+                hintText: 'إسم المنتج',
+                keyboardType: TextInputType.text,
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                hintText: 'سعر المنتج',
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                hintText: 'كود المنتج',
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                hintText: 'وصف المنتج',
+                keyboardType: TextInputType.text,
+                maxLines: 5,
+              ),
+              SizedBox(
+                height: 16,
+              ),
             ],
           ),
         ),
