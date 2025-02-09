@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_button.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_text_form_field.dart';
-import 'package:fruits_hub_dashboard/features/add_product/presentation/views/domain/entites/add_product_input_entity.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entites/add_product_input_entity.dart';
+import 'package:fruits_hub_dashboard/features/add_product/presentation/manager/add_product_cubit/add_product_cubit.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/image_field.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_featured_checkbox.dart';
 
@@ -101,6 +103,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                           price: price,
                           image: image!,
                           isFeatured: isFeatured);
+                      context.read<AddProductCubit>().addProduct(input);
                     } else {
                       autovalidateMode = AutovalidateMode.onUserInteraction;
                     }
