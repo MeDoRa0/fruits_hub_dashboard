@@ -19,7 +19,7 @@ class ProductRepoImpl implements ProductsRepo {
           data:
               AddProductInputModel.fromEntity(addProductInputEntity).toJson());
       return const Right(null);
-    } on Exception catch (e) {
+    }  catch (e) {
       return Left(
         ServerFailuer(
           message: e.toString(),

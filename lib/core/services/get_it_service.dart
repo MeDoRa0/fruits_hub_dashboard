@@ -13,12 +13,12 @@ final getIt = GetIt.instance;
 // Register services
 void setupGetit() {
   getIt.registerSingleton<StorageService>(FireStorage());
+  getIt.registerSingleton<DatabaseService>(FirestoreService());
   getIt.registerSingleton<ImagesRepo>(
     ImagesRepoImpl(
       getIt.get<StorageService>(),
     ),
   );
-  getIt.registerSingleton<DatabaseService>(FirestoreService());
 
   getIt.registerSingleton<ProductsRepo>(
       ProductRepoImpl(getIt.get<DatabaseService>()));
