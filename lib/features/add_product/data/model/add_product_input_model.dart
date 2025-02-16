@@ -66,6 +66,7 @@ class AddProductInputModel {
       'isOrganic': isOrganic,
       'numberOfCalories': numberOfCalories,
       'unitAmount': unitAmount,
+      'reviews': reviews.map((e) => e.toJson()).toList(),
     };
   }
 }
