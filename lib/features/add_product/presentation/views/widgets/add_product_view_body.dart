@@ -8,6 +8,7 @@ import 'package:fruits_hub_dashboard/features/add_product/domain/entites/add_pro
 import 'package:fruits_hub_dashboard/features/add_product/presentation/manager/add_product_cubit/add_product_cubit.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/image_field.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_featured_checkbox.dart';
+import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_orgainc_checkbox.dart';
 
 class AddProductViewBody extends StatefulWidget {
   const AddProductViewBody({super.key});
@@ -20,9 +21,11 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
   final _formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String name, code, description;
-  late num price;
+  late num price, expiryLimit, numberOfCalories, unitAmount;
   late File? image;
   bool isFeatured = false;
+  bool isOrganic = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -74,6 +77,36 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
               SizedBox(
                 height: 16,
               ),
+              CustomTextFormField(
+                hintText: 'مدة الصلاحية',
+                keyboardType: TextInputType.number,
+                onSaved: (value) {
+                  expiryLimit = num.parse(value!);
+                },
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                hintText: 'عدد السعرات',
+                keyboardType: TextInputType.number,
+                onSaved: (value) {
+                  numberOfCalories = num.parse(value!);
+                },
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                hintText: 'عدد الوحدات',
+                keyboardType: TextInputType.number,
+                onSaved: (value) {
+                  unitAmount = num.parse(value!);
+                },
+              ),
+              SizedBox(
+                height: 16,
+              ),
               ImageField(
                 onFileChanged: (image) {
                   this.image = image;
@@ -88,6 +121,12 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 },
               ),
               SizedBox(
+                height: 16,
+              ),
+              IsOrganicCheckBox(onChecked: (value) {
+                isOrganic = value;
+              }),
+              SizedBox(
                 height: 24,
               ),
               CustomButton(
@@ -97,12 +136,17 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       AddProductInputEntity input = AddProductInputEntity(
-                          name: name,
-                          code: code,
-                          description: description,
-                          price: price,
-                          image: image!,
-                          isFeatured: isFeatured);
+                        name: name,
+                        code: code,
+                        description: description,
+                        price: price,
+                        image: image!,
+                        isFeatured: isFeatured,
+                        expiryLimit: expiryLimit.toInt(),
+                        numberOfCalories: numberOfCalories.toInt(),
+                        unitAmount: unitAmount.toInt(),
+                        isOrganic: isOrganic,
+                      );
                       context.read<AddProductCubit>().addProduct(input);
                     } else {
                       autovalidateMode = AutovalidateMode.onUserInteraction;
@@ -112,6 +156,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   }
                 },
               ),
+              SizedBox(
+                height: 16,
+              )
             ],
           ),
         ),
