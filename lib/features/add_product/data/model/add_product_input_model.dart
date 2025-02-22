@@ -34,7 +34,7 @@ class AddProductInputModel {
       required this.unitAmount});
 
   factory AddProductInputModel.fromEntity(
-      AddProductInputEntity addProductInputEntity) {
+      ProductInputEntity addProductInputEntity) {
     return AddProductInputModel(
       reviews: addProductInputEntity.reviews
           .map((e) => ReviewModel.fromEntity(e))

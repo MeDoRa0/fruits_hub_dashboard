@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:fruits_hub_dashboard/core/constants.dart';
 import 'package:fruits_hub_dashboard/core/helper_function/on_generate_routes.dart';
 import 'package:fruits_hub_dashboard/core/services/custom_bloc_observer.dart';
 import 'package:fruits_hub_dashboard/core/services/get_it_service.dart';
@@ -20,6 +21,7 @@ void main() async {
   );
 
   await SupabaseStorageService.initSupabase();
+  await SupabaseStorageService.createBucket(kSupabaseBucket);
 
   Bloc.observer = CustomBlocObserver();
   setupGetit();

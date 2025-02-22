@@ -12,14 +12,14 @@ class ProductRepoImpl implements ProductsRepo {
   ProductRepoImpl(this.databaseService);
   @override
   Future<Either<Failuers, void>> addProduct(
-      AddProductInputEntity addProductInputEntity) async {
+      ProductInputEntity addProductInputEntity) async {
     try {
       await databaseService.addData(
           path: BackendEndpoint.productsCollection,
           data:
               AddProductInputModel.fromEntity(addProductInputEntity).toJson());
       return const Right(null);
-    }  catch (e) {
+    } catch (e) {
       return Left(
         ServerFailuer(
           message: e.toString(),
