@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:fruits_hub_dashboard/core/repository/images_repo/images_repo.dart';
 import 'package:fruits_hub_dashboard/core/repository/product_repo/products_repo.dart';
-import 'package:fruits_hub_dashboard/features/add_product/domain/entites/add_product_input_entity.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entites/product_input_entity.dart';
 import 'package:meta/meta.dart';
 
 part 'add_product_state.dart';
