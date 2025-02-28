@@ -36,11 +36,11 @@ class SupabaseStorageService implements StorageService {
     String extentionName = b.extension(file.path);
     var result = await _supabase.client.storage
         .from(kSupabaseBucket)
-        .upload('$path/$fileName.$extentionName', file);
+        .upload('$path/$fileName$extentionName', file);
 
     final String publicUrl = _supabase.client.storage
         .from(kSupabaseBucket)
-        .getPublicUrl('$path/$fileName.$extentionName');
+        .getPublicUrl('$path/$fileName$extentionName');
 
     return result;
   }
