@@ -18,11 +18,11 @@ class AddProductViewBody extends StatefulWidget {
 }
 
 class _AddProductViewBodyState extends State<AddProductViewBody> {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String name, code, description;
   late num price, expiryLimit, numberOfCalories, unitAmount;
-  late File? image;
+  File? image;
   bool isFeatured = false;
   bool isOrganic = false;
 
@@ -151,6 +151,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       context.read<AddProductCubit>().addProduct(input);
                     } else {
                       autovalidateMode = AutovalidateMode.onUserInteraction;
+                      setState(() {});
                     }
                   } else {
                     showError(context);

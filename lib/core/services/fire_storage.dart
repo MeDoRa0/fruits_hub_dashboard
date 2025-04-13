@@ -12,7 +12,7 @@ class FireStorage implements StorageService {
     String extentionName = b.extension(file.path);
     var fileRef = storageRef.child('$path/$fileName$extentionName');
     await fileRef.putFile(file);
-    var fileUrl = fileRef.getDownloadURL();
+    var fileUrl = await fileRef.getDownloadURL();
     return fileUrl;
   }
 }
