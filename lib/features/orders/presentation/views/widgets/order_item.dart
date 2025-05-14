@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/core/utils/text_styles.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_entity.dart';
 
@@ -18,8 +19,14 @@ class OrderItem extends StatelessWidget {
           children: [
             Text("Order Summary", style: AppTextStyle.heading4Bold),
             const SizedBox(height: 12),
-            Text("Total Price: \$${order.totalPrice.toStringAsFixed(2)}",
-                style: AppTextStyle.font16Bold),
+            Row(
+              children: [
+                Text("Total Price: \$${order.totalPrice.toStringAsFixed(2)}",
+                    style: AppTextStyle.font16Bold),
+                Spacer(),
+                buildStatusChip(order.status),
+              ],
+            ),
             Text("Payment Method: ${order.paymentMethod}",
                 style: AppTextStyle.font16Regular),
             const SizedBox(height: 16),
@@ -81,5 +88,37 @@ class OrderItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget buildStatusChip(OrderEnum status) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: getStatusColor(status).withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        status.name.toUpperCase(),
+        style: TextStyle(
+          color: getStatusColor(status),
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Color getStatusColor(OrderEnum status) {
+    switch (status) {
+      case OrderEnum.pending:
+        return Colors.orange;
+      case OrderEnum.processing:
+        return Colors.blue;
+      case OrderEnum.shipped:
+        return Colors.purple;
+      case OrderEnum.delivered:
+        return Colors.green;
+      case OrderEnum.cancelled:
+        return Colors.red;
+    }
   }
 }

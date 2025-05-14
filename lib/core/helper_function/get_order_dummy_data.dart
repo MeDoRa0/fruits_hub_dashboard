@@ -1,3 +1,4 @@
+import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_entity.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_product_entity.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/shipping_address_entity.dart';
@@ -18,7 +19,7 @@ OrderEntity getDummyOrders() {
       name: 'Apple',
       code: 'P123',
       imageUrl:
-          'https://www.luluhypermarket.com/medias/19047-01.jpg-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyODA0NjR8aW1hZ2UvanBlZ3xoZmMvaDZjLzEwNTI1ODQxMzU4ODc4LzE5MDQ3LTAxLmpwZ18xMjAwV3gxMjAwSHwxNzc2MTdkZWFiZjljYjQ4NTkxNzM1M2RmYWNiN2EyYTZjNjM5NzM3YmIyMGI4NWI1NDkyMDcyZTdiMjU1YThh',
+          'https://img.freepik.com/premium-photo/red-apples-isolated-white_392895-194224.jpg',
       price: 9.99,
       quantity: 2,
     ),
@@ -46,5 +47,6 @@ OrderEntity getDummyOrders() {
     orderProductEntity: orderProductEntities,
     totalPrice: 29.98,
     paymentMethod: 'Credit Card',
+    status: OrderEnum.pending,
   );
 }

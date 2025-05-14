@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub_dashboard/features/orders/data/models/order_model.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_entity.dart';
 import 'package:fruits_hub_dashboard/features/orders/presentation/views/widgets/order_item.dart';
 
