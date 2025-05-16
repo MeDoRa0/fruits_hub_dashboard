@@ -8,8 +8,15 @@ part 'fetch_orders_state.dart';
 class FetchOrdersCubit extends Cubit<FetchOrdersState> {
   FetchOrdersCubit(this.ordersRepo) : super(FetchOrdersInitial());
   final OrdersRepo ordersRepo;
-  Future<void> fetchOrders() async {
+  Stream<void> fetchOrders() async* {
     emit(FetchOrdersLoading());
-    ordersRepo.fetchOrders();
+    await for (var result in ordersRepo.fetchOrders()) {
+      result.fold((f) {
+        emit(FetchOrdersFailure(errorMessage: f.message));
+      },(r){
+        emit(FetchOrdersSuccess(orders: r));
+    }
+      );
+    }
   }
 }
