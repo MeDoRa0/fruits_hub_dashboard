@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fruits_hub_dashboard/core/services/database_service.dart';
 
@@ -51,4 +50,25 @@ class FirestoreService implements DatabaseService {
     var data = await firestore.collection(path).doc(docID).get();
     return data.exists;
   }
+
+  @override
+  Stream fetchStreamData(
+      {required String path, Map<String, dynamic>? query}) async* {
+    Query<Map<String, dynamic>> data = firestore.collection(path);
+    if (query != null) {
+      if (query['orderBy'] != null) {
+        var orderByField = query['orderBy'];
+        var descending = query['descending'];
+        data = data.orderBy(orderByField, descending: descending);
+      }
+      if (query['limit'] != null) {
+        var limit = query['limit'];
+        data = data.limit(limit);
+      }
+    }
+    await for (var result in data.snapshots()) {
+      yield result.docs.map((e) => e.data()).toList();
+    }
+  }
 }
+

@@ -13,7 +13,7 @@ class OrdersRepoImpl implements OrdersRepo {
   OrdersRepoImpl(this._databaseService);
 
   @override
-  Future<Either<Failuers, List<OrderEntity>>> fetchOrders() async {
+  Stream<Either<Failuers, List<OrderEntity>>> fetchOrders() async* {
     try {
       final data = await _databaseService.fetchData(
           path: BackendEndpoint.ordersCollection);
@@ -22,9 +22,9 @@ class OrdersRepoImpl implements OrdersRepo {
           .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
           .toList();
 
-      return Right(orders);
+      yield Right(orders);
     } on FirebaseException catch (e) {
-      return Left(
+      yield Left(
         ServerFailuer(
           message: e.message.toString(),
         ),

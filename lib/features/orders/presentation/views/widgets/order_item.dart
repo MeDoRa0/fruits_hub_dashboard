@@ -94,7 +94,7 @@ class OrderItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: getStatusColor(status).withOpacity(0.1),
+        color: getStatusColor(status).withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
