@@ -9,11 +9,13 @@ class OrderModel {
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductModel> orderProducts;
   final String status;
+  final String orderId;
 
   final String paymentMethod;
 
   OrderModel(
       {required this.totalPrice,
+      required this.orderId,
       required this.status,
       required this.uID,
       required this.shippingAddressModel,
@@ -24,6 +26,7 @@ class OrderModel {
     return OrderModel(
       totalPrice: json['totalPrice'] as double,
       uID: json['uID'] as String,
+      orderId: json['orderId'] ,
       shippingAddressModel:
           ShippingAddressModel.fromJson(json['shippingAddressModel']),
       orderProducts: List<OrderProductModel>.from(
@@ -45,11 +48,13 @@ class OrderModel {
       };
 
   toEntity() => OrderEntity(
+      orderId: orderId,
       status: OrderStatusEnum.values
           .firstWhere((element) => element.name == status),
       totalPrice: totalPrice,
       uID: uID,
       shippingAddressEntity: shippingAddressModel.toEntity(),
       orderProductEntity: orderProducts.map((e) => e.toEntity()).toList(),
+      
       paymentMethod: paymentMethod);
 }

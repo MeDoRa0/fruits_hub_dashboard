@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/core/utils/text_styles.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_entity.dart';
+import 'package:fruits_hub_dashboard/features/orders/presentation/views/widgets/order_action_buttons.dart';
 
 class OrderItem extends StatelessWidget {
   final OrderEntity order;
@@ -30,7 +31,13 @@ class OrderItem extends StatelessWidget {
             Text("Payment Method: ${order.paymentMethod}",
                 style: AppTextStyle.font16Regular),
             const SizedBox(height: 16),
-            Text("Shipping Address:", style: AppTextStyle.font19Bold),
+            Row(
+              children: [
+                Text("Shipping Address:", style: AppTextStyle.font19Bold),
+                const Spacer(),
+                OrderActionButtons(orderEntity: order),
+              ],
+            ),
             const SizedBox(height: 4),
             Text("Name: ${order.shippingAddressEntity.name ?? '-'}",
                 style: AppTextStyle.font16Regular),

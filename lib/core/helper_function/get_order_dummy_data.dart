@@ -42,6 +42,7 @@ OrderEntity getDummyOrders() {
   ];
 
   return OrderEntity(
+    orderId: 'order123',
     uID: 'order123',
     shippingAddressEntity: shippingAddressEntity,
     orderProductEntity: orderProductEntities,
