@@ -7,7 +7,7 @@ class OrderEntity {
   final String uID;
   final ShippingAddressEntity shippingAddressEntity;
   final List<OrderProductEntity> orderProductEntity;
-  final OrderEnum status;
+  final OrderStatusEnum status;
 
   final String paymentMethod;
 

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/core/errors/failuers.dart';
 import 'package:fruits_hub_dashboard/core/services/database_service.dart';
 import 'package:fruits_hub_dashboard/core/utils/backend_endpoint.dart';
@@ -28,6 +29,20 @@ class OrdersRepoImpl implements OrdersRepo {
           message: e.message.toString(),
         ),
       );
+    }
+  }
+
+  @override
+  Future<Either<Failuers, void>> updateOrder(
+      {required OrderStatusEnum status, required String orderId}) async {
+    try {
+      await _databaseService.updateData(
+          data: {'status': status.name},
+          path: BackendEndpoint.updateOrder,
+          docID: orderId);
+      return right(null);
+    } catch (e) {
+      return left(ServerFailuer(message: e.toString()));
     }
   }
 }

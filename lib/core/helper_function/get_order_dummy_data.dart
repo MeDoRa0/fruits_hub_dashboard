@@ -47,6 +47,6 @@ OrderEntity getDummyOrders() {
     orderProductEntity: orderProductEntities,
     totalPrice: 29.98,
     paymentMethod: 'Credit Card',
-    status: OrderEnum.pending,
+    status: OrderStatusEnum.pending,
   );
 }

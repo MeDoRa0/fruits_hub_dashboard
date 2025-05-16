@@ -45,7 +45,8 @@ class OrderModel {
       };
 
   toEntity() => OrderEntity(
-      status: OrderEnum.values.firstWhere((element) => element.name == status),
+      status: OrderStatusEnum.values
+          .firstWhere((element) => element.name == status),
       totalPrice: totalPrice,
       uID: uID,
       shippingAddressEntity: shippingAddressModel.toEntity(),

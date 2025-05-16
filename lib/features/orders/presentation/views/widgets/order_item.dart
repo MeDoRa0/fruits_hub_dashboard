@@ -90,7 +90,7 @@ class OrderItem extends StatelessWidget {
     );
   }
 
-  Widget buildStatusChip(OrderEnum status) {
+  Widget buildStatusChip(OrderStatusEnum status) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
@@ -107,17 +107,17 @@ class OrderItem extends StatelessWidget {
     );
   }
 
-  Color getStatusColor(OrderEnum status) {
+  Color getStatusColor(OrderStatusEnum status) {
     switch (status) {
-      case OrderEnum.pending:
+      case OrderStatusEnum.pending:
         return Colors.orange;
-      case OrderEnum.processing:
+      case OrderStatusEnum.processing:
         return Colors.blue;
-      case OrderEnum.shipped:
+      case OrderStatusEnum.shipped:
         return Colors.purple;
-      case OrderEnum.delivered:
+      case OrderStatusEnum.delivered:
         return Colors.green;
-      case OrderEnum.cancelled:
+      case OrderStatusEnum.cancelled:
         return Colors.red;
     }
   }
