@@ -17,8 +17,13 @@ class OrderActionButtons extends StatelessWidget {
         Visibility(
           visible: orderEntity.status == OrderStatusEnum.pending,
           child: ElevatedButton(
-            onPressed: () {},
-            child: const Text('reject'),
+            onPressed: () {
+              context.read<UpdateOrderCubit>().updateOrder(
+                    orderId: orderEntity.orderId,
+                    status: OrderStatusEnum.cancelled,
+                  );
+            },
+            child: const Text('Reject'),
           ),
         ),
         SizedBox(
@@ -27,14 +32,13 @@ class OrderActionButtons extends StatelessWidget {
         Visibility(
           visible: orderEntity.status == OrderStatusEnum.pending,
           child: ElevatedButton(
-            
             onPressed: () {
-              context.read()<UpdateOrderCubit>().updateOrderStatus(
-                orderId: orderEntity.orderId,
-                status:orderEntity.status,
-              );
+              context.read<UpdateOrderCubit>().updateOrder(
+                    orderId: orderEntity.orderId,
+                    status: OrderStatusEnum.processing, // تغيير للحالة الجديدة
+                  );
             },
-            child: const Text('accept'),
+            child: const Text('Accept'),
           ),
         ),
         Visibility(

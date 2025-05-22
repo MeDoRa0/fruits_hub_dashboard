@@ -13,21 +13,19 @@ class UpdtaeOrderBuilder extends StatelessWidget {
     return BlocConsumer<UpdateOrderCubit, UpdateOrderState>(
       listener: (context, state) {
         if (state is UpdateOrderSuccess) {
-          if (state.isUpdated) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('تم تحديث الطلب بنجاح'),
-                backgroundColor: Colors.green,
-              ),
-            );
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('فشل تحديث الطلب'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Order updated successfully'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        } else if (state is UpdateOrderFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage),
+              backgroundColor: Colors.red,
+            ),
+          );
         }
       },
       builder: (context, state) {
